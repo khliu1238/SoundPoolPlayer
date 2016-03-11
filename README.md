@@ -9,7 +9,7 @@ usage: similar to MediaPlayer except load()
 	mPlayer.setOnCompletionListener(
 		new MediaPlayer.OnCompletionListener() {
 	        @Override
-	        public void onCompletion(MediaPlayer mp) {
+	        public void onCompletion(MediaPlayer mp) { 	//mp will be null here
 	        	Log.d("debug", "completed");
 	        }
 		};
