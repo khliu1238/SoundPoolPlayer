@@ -29,7 +29,9 @@ public class SoundPoolPlayer extends SoundPool {
             if(isPlaying){
                 isPlaying = false;
                 Log.d("debug", "ending..");
-                listener.onCompletion(null);
+                if(listener != null){
+                    listener.onCompletion(null);
+                }
             }
         }
     };
