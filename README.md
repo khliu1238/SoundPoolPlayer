@@ -21,6 +21,10 @@ usage: similar to MediaPlayer except load()
 		}
 	});
 
+## play:
+
+    mPlayer.play()          //don't call this directly, put in inside OnLoadCompleteListener
+
 ## pause:
 
     mPlayer.pause();
