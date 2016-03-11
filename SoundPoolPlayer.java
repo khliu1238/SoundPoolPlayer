@@ -1,4 +1,4 @@
-package com.gocar.utils;
+package com.company;
 
 import android.content.Context;
 import android.media.AudioManager;
