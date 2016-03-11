@@ -65,7 +65,12 @@ public class SoundPoolPlayer extends SoundPool {
     }
 
     public void play(){
-        playIt();
+        if(!loaded){
+            loadAndPlay();
+        }
+        else{
+            playIt();
+        }
     }
 
     public static SoundPoolPlayer create(Context context, int resId){
@@ -87,20 +92,16 @@ public class SoundPoolPlayer extends SoundPool {
         this.listener = listener;
     }
 
-    public int load(final OnLoadCompleteListener listener){
-        this.context = context;
-        soundId = super.load(context, resId, 1);
-        this.resId = resId;
+    private void loadAndPlay(){
         duration = getSoundDuration(resId);
+        soundId = super.load(context, resId, 1);
         setOnLoadCompleteListener(new OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
                 loaded = true;
-                listener.onLoadComplete(soundPool, sampleId, status);
+                playIt();
             }
         });
-
-        return soundId;
     }
 
     private void playIt(){
