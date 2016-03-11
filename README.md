@@ -3,34 +3,36 @@ custom extention from Android SoundPool with setOnCompletionListener without the
 
 usage: similar to MediaPlayer except load()
 
-creation:
-  SoundPoolPlayer mPlayer = SoundPoolPlayer.create(context, resId);
-  mPlayer.setOnCompletionListener(
-  	new MediaPlayer.OnCompletionListener() {
+## creation:
+
+	SoundPoolPlayer mPlayer = SoundPoolPlayer.create(context, resId);
+	mPlayer.setOnCompletionListener(
+		new MediaPlayer.OnCompletionListener() {
 	        @Override
 	        public void onCompletion(MediaPlayer mp) {
 	        	Log.d("debug", "completed");
 	        }
 		};
-  );
-  mPlayer.load(new SoundPool.OnLoadCompleteListener() {
+	);
+	mPlayer.load(new SoundPool.OnLoadCompleteListener() {
 		@Override
 		public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
 			mPlayer.play();
 		}
 	});
 
-pause:
-	mPlayer.pause();
+## pause:
 
-stop:
-	mPlayer.stop();
+    mPlayer.pause();
 
-resume:
-	mPlayer.resume();
+## stop:
 
-isPlaying:
-	mPlayer.isPlaying();
+    mPlayer.stop();
 
+## resume:
 
+    mPlayer.resume();
 
+## isPlaying:
+
+    mPlayer.isPlaying();
