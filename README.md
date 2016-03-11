@@ -14,16 +14,7 @@ usage: similar to MediaPlayer except load()
 	        }
 		};
 	);
-	mPlayer.load(new SoundPool.OnLoadCompleteListener() {
-		@Override
-		public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-			mPlayer.play();
-		}
-	});
-
-## play:
-
-    mPlayer.play()          //don't call this directly, put in inside OnLoadCompleteListener
+	mPlayer.play()
 
 ## pause:
 
