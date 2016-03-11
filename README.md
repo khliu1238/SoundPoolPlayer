@@ -1,8 +1,6 @@
 # SoundPoolPlayer
 custom extention from Android SoundPool with setOnCompletionListener without the low-efficiency drawback of MediaPlayer.
 
-usage: similar to MediaPlayer except load()
-
 ## creation:
 
 	SoundPoolPlayer mPlayer = SoundPoolPlayer.create(context, resId);
