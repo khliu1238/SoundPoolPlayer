@@ -56,8 +56,7 @@ public class SoundPoolPlayer extends SoundPool {
 
     public void stop(){
         if(streamId > 0){
-            endTime = System.currentTimeMillis();
-            timeSinceStart += endTime - startTime;
+            timeSinceStart = 0;
             super.stop(streamId);
             if(handler != null){
                 handler.removeCallbacks(runnable); 
