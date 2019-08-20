@@ -14,7 +14,9 @@ import android.util.Log;
 
    author: kenliu
 */
-public class SoundPoolPlayer extends SoundPool {
+public class SoundPoolPlayer extends SoundPool 
+{
+	private final static String TAG = "SndPool";
     Context context;
     int soundId;
     int streamId;
@@ -28,7 +30,7 @@ public class SoundPoolPlayer extends SoundPool {
         public void run(){
             if(isPlaying){
                 isPlaying = false;
-                Log.d("debug", "ending..");
+                Log.d(TAG, "ending..");
                 if(listener != null){
                     listener.onCompletion(null);
                 }
@@ -93,21 +95,27 @@ public class SoundPoolPlayer extends SoundPool {
         this.listener = listener;
     }
 
-    private void loadAndPlay(){
-        duration = getSoundDuration(resId);
-        soundId = super.load(context, resId, 1);
-        setOnLoadCompleteListener(new OnLoadCompleteListener() {
-            @Override
-            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+    private void loadAndPlay()
+    {
+        try
+        {
+            duration = getSoundDuration(resId);
+            soundId = super.load(context, resId, 1);
+            setOnLoadCompleteListener((soundPool, sampleId, status) ->
+            {
                 loaded = true;
                 playIt();
-            }
-        });
+            });
+        }
+        catch (Exception ex)
+        {
+            Log.e(TAG, "Failed to play sound", ex);
+        }
     }
 
     private void playIt(){
         if(loaded && !isPlaying){
-            Log.d("debug", "start playing..");
+            Log.d(TAG, "start playing..");
             if(timeSinceStart == 0){
                 streamId = super.play(soundId, 1f, 1f, 1, 0, 1f);
             }
@@ -121,9 +129,11 @@ public class SoundPoolPlayer extends SoundPool {
         }
     }
 
-    private long getSoundDuration(int rawId){
+    private long getSoundDuration(int rawId)
+	{
        MediaPlayer player = MediaPlayer.create(context, rawId);
        int duration = player.getDuration();
+	   player.release();
        return duration;
     }
 }
